@@ -1,0 +1,175 @@
+\documentclass{bbawslides}
+
+\usepackage[TS1, T1]{fontenc}
+\usepackage{ifthen}
+
+\usepackage[a4paper]{hyperref}
+\rotateheaderstrue	%%-- otherwise seminar does strange things
+\usepackage{url}
+
+\usepackage[ngerman]{babel}
+\usepackage[babel]{csquotes}
+\usepackage[autoplay]{animate}
+\usepackage{graphicx}
+\usepackage{numprint}
+\npthousandsep{~}\npthousandthpartsep{}\npdecimalsign{,}
+
+\DeclareTextSymbol{\textlongs}{TS1}{115} 
+\DeclareTextSymbolDefault{\textlongs}{TS1}
+
+
+\begin{document}
+\providecommand{\Title}{}
+
+
+\begin{bbawtitle}[Perspektiven der automatischen Texterfassung als Grundlage
+wissenschaftlicher Editionen]
+  \vspace*{0.5em}%
+  \textcolor{bbawred}{\bf am Beispiel der Brief- und Schriftenausgabe\\der \textsc{Bernd Alois Zimmermann}-Gesamtausgabe}\\[4ex]
+  Matthias Boenig, Hemma Jäger, Matthias Pasdzierny, Kay-Michael Würzner\\[-.25em]%
+  \textcolor{urlColor}{\texttt{{\small \{boenig|hemma.jaeger|pasdzierny|wuerzner\}@bbaw.de}}}
+  \\[1.5em]
+  {\scriptsize{%
+    Geisteswissenschaftliche Forschungsdaten.\\Methoden zur digitalen Erfassung, Aufbereitung und Präsentation\\%
+    19. Oktober 2017\\%
+  }}
+\end{bbawtitle}
+\slideStyleFrame
+
+\renewcommand{\footerText}{\tiny 19. Oktober 2017, Workshop AG eHumanities}
+
+%----------------------------------------------------------------------------------------------
+% Outline
+%----------------------------------------------------------------------------------------------
+\begin{bbawslide}{Übersicht}
+  \vspace*{7mm}%
+  \centerslidestrue%
+  \begin{itemize}
+    \item Einleitung
+    \begin{itemize}\small
+      \item die \textsc{Bernd Alois Zimmermann}-Gesamtausgabe
+      \item automatische Texterfassung
+      \item Motivation
+    \end{itemize}
+    \item Workflowbeschreibung
+    \begin{itemize}\small
+      \item Bildvorverarbeitung
+      \item Layoutanalyse
+      \item Zeichenerkennung
+      \item Editionsumgebung
+    \end{itemize}
+    \item Perspektiven
+    \begin{itemize}\small
+      \item Volltextverbesserung
+      \item OCR-D
+      \item Editionsunterstützung
+    \end{itemize}
+  \end{itemize}
+\end{bbawslide}
+
+\begin{bbawslide}{Die \textsc{Bernd Alois Zimmermann}-Gesamtausgabe}
+  \vspace*{7mm}%
+  \centerslidestrue%
+  \begin{itemize}
+    \item
+  \end{itemize}
+\end{bbawslide}
+
+\begin{bbawslide}{Die \textsc{Bernd Alois Zimmermann}-Gesamtausgabe}
+  \vspace*{7mm}%
+  \centerslidestrue%
+  \begin{itemize}
+    \item
+  \end{itemize}
+\end{bbawslide}
+
+\begin{bbawpart}{\Large\bf Einleitung}
+\end{bbawpart}
+
+\begin{bbawslide}{Automatische Texterfassung}
+  \vspace*{7mm}%
+  \hspace*{-2.5em}%
+  \centerslidestrue%
+  \begin{tabular}{lc}
+    \begin{minipage}{0.65\textwidth}
+      \begin{mitemize}
+        \item Huge amount of text sources not available in \emph{digital} form
+        \begin{mitemize}\small
+          \item Historical books, newspapers, and papers from the printing era
+          \item Hand-written manuscripts and letters
+        \end{mitemize}
+        \item Conservation by scanning or photographing
+        \begin{mitemize}\small
+          \item Images but \textbf{no text data}
+          \item[\textcolor{bbawred}{$\Rightarrow$}] Text retrieval or quantitative analyses impossible
+        \end{mitemize}
+        \item Automatic capturing of \textbf{text} within images
+        \item Automatic capturing of \textbf{layout} within images (aka.~\textbf{O}ptical \textbf{L}ayout \textbf{R}ecognition)
+      \end{mitemize}
+    \end{minipage}
+    &
+    \begin{minipage}{0.4\textwidth}
+        \epsfig{file=figures/times.eps,width=\textwidth}
+    \end{minipage}
+  \end{tabular}
+\end{bbawslide}
+
+\begin{bbawpart}{\Large\bf Workflowbeschreibung}
+\end{bbawpart}
+
+\begin{bbawslide}{Sequence-focused recognition}
+    \vspace*{1.5em}%
+    \hspace*{-2em}%
+        \begin{minipage}{1.05\textwidth}
+            \begin{itemize}
+                \item Targets one \emph{line} of glyphs
+                \begin{description}\small
+                    \item[Scaling:] Uniform height for all lines
+                    \item[Feature extraction:] Fixed number of horizontal rows, variable number
+                                               of vertical columns: lines as sequences of binary-valued fixed-length vectors
+                \end{description}
+            \end{itemize}
+        \end{minipage}
+    \begin{center}
+        \epsfig{file=figures/grid.eps,width=1.05\textwidth}
+    \end{center}
+        \begin{minipage}{1.05\textwidth}
+            \begin{itemize}
+                \item Context dependent (i.e.~\emph{transition probabilities}) recognition (requires larger amounts of training material $\rightarrow$ DTA)
+                \item Segmentation into lines as pre-processing step
+                \item Usually more robust to variance than character-focused apporaches
+                \item Open-source software \texttt{OCRopus}
+                \begin{mitemize}\small
+                    \item Uses neural networks for sequence classification
+                \end{mitemize}
+            \end{itemize}
+        \end{minipage}
+\end{bbawslide}
+\begin{bbawpart}{\Large\bf Danke für Ihre Aufmerksamkeit!\\}
+\end{bbawpart}
+
+\end{document}
+
+%\begin{bbawpart}{\Large\bf Warum braucht man OCR?}
+%\end{bbawpart}
+
+%\begin{bbawslide}{Warum braucht man OCR?}
+%  \vspace*{7mm}%
+%  \centerslidestrue%
+%  \begin{itemize}
+%    \item
+%  \end{itemize}
+%\end{bbawslide}
+
+%
+% modelines
+%
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% coding: utf-8
+%%% tab-width: 2
+%%% indent-tabs-mode: nil
+%%% End:
+
+% vim: set ts=2 sw=2 expandtab :
